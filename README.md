@@ -16,8 +16,7 @@
 
 ## 🖼️ Live Demo
 
-🔗 [Click here to view the app](https://your-vercel-deployment-link.vercel.app)  
-*(Replace with your real URL)*
+🔗 [Click here to view the app](https://beautiful-story-generator.vercel.app/)  
 
 ![StoryGen Demo](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExd2EwZ3Zyc2w2dXdxNmc2OHlycHkyYm81amVncHptMXZhaGNwbHZ6biZlcD12MV9naWZzX3NlYXJjaCZjdD1n/gFWrXgKY6TuhpX9ZgM/giphy.gif)
 
