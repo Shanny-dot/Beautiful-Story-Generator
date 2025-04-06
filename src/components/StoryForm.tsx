@@ -23,6 +23,17 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectTrigger, SelectItem, SelectContent, SelectValue } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
 
+// Types
+type StoryFormData = {
+  title: string;
+  genre: string;
+  mood: string;
+  mainCharacter: string;
+  setting: string;
+  plot: string;
+  ending: string;
+};
+
 const genres = ["Fantasy", "Romance", "Sci-fi", "Mystery", "Comedy", "Horror", "Adventure"];
 const moods = ["Wholesome", "Dark", "Inspiring", "Funny", "Chill"];
 const endings = ["Happy", "Sad", "Twist", "Open-ended", "AI decides"];
@@ -31,7 +42,7 @@ export default function StoryForm() {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
-  const form = useForm({
+  const form = useForm<StoryFormData>({
     defaultValues: {
       title: '',
       genre: '',
@@ -43,26 +54,26 @@ export default function StoryForm() {
     }
   });
 
-  const onSubmit = async (values: any) => {
+  const onSubmit = async (data: StoryFormData) => {
     setLoading(true);
-  
+
     const res = await fetch("/api/generate-story", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(values),
+      body: JSON.stringify(data),
     });
-  
-    const data = await res.json();
-  
-    if (!data || !data.story) {
+
+    const result = await res.json();
+
+    if (!result || !result.story) {
       alert("No story received from API");
       setLoading(false);
       return;
     }
-  
-    router.push(`/story?text=${encodeURIComponent(data.story)}`);
+
+    router.push(`/story?text=${encodeURIComponent(result.story)}`);
     setLoading(false);
   };
 
