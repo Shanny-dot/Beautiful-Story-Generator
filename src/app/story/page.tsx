@@ -1,17 +1,22 @@
-// app/story/page.tsx
 'use client';
 
 import { useSearchParams } from 'next/navigation';
+import { useEffect, useState } from 'react';
 
 export default function StoryPage() {
   const searchParams = useSearchParams();
-  const text = searchParams.get("text");
+  const [story, setStory] = useState<string | null>(null);
+
+  useEffect(() => {
+    const text = searchParams.get("text");
+    setStory(text ? decodeURIComponent(text) : null);
+  }, [searchParams]);
 
   return (
     <div className="max-w-4xl mx-auto p-8">
       <h1 className="text-4xl font-bold mb-6">Your Story ✨</h1>
       <div className="bg-white p-6 rounded shadow-md whitespace-pre-wrap leading-relaxed">
-        {text ? decodeURIComponent(text) : "No story found."}
+        {story || "No story found."}
       </div>
     </div>
   );
