@@ -1,11 +1,11 @@
 'use client';
 
 import { useSearchParams } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, Suspense } from 'react';
 
 export const dynamic = 'force-dynamic'; // 👈 This line disables prerendering
 
-export default function StoryPage() {
+function StoryContent() {
   const searchParams = useSearchParams();
   const [story, setStory] = useState<string | null>(null);
 
@@ -21,5 +21,13 @@ export default function StoryPage() {
         {story || "No story found."}
       </div>
     </div>
+  );
+}
+
+export default function StoryPage() {
+  return (
+    <Suspense fallback={<div className="text-center p-8">Loading your story...</div>}>
+      <StoryContent />
+    </Suspense>
   );
 }
