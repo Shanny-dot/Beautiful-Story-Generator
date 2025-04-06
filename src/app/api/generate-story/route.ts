@@ -1,6 +1,6 @@
 'use client';
 
-import { NextResponse } from "next/server";
+import { useSearchParams } from 'next/navigation';
 
 export async function POST(req: Request) {
   const { genre, mood, mainCharacter, setting, plot, ending } = await req.json();
