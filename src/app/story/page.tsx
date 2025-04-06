@@ -3,6 +3,8 @@
 import { useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
+export const dynamic = 'force-dynamic'; // 👈 This line disables prerendering
+
 export default function StoryPage() {
   const searchParams = useSearchParams();
   const [story, setStory] = useState<string | null>(null);
