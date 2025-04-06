@@ -1,6 +1,4 @@
-'use client';
-
-import { useSearchParams } from 'next/navigation';
+import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
   const { genre, mood, mainCharacter, setting, plot, ending } = await req.json();
@@ -18,7 +16,7 @@ Make it engaging and beautifully written within 2500 words.
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      "Authorization": `Bearer ${process.env.GROQ_API_KEY}`, // You’ll add this in .env
+      "Authorization": `Bearer ${process.env.GROQ_API_KEY}`,
     },
     body: JSON.stringify({
       model: "llama3-8b-8192",
